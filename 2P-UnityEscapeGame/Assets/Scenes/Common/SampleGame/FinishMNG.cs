@@ -31,7 +31,7 @@ public class FinishMNG : MonoBehaviour
     public void RestartGame()
     {
 
-        SceneManager.LoadScene("Stage01");
+        SceneManager.LoadScene("Start Scene");
 
     }
 

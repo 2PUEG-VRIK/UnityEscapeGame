@@ -34,6 +34,11 @@ public class result : MonoBehaviour
         SingleGameMNG.Instance.Pause();
     }
 
+    public void Home()
+    {
+        SingleGameMNG.Instance.Home();
+    }
+
     //public void NowScene()
     //{
     //    Singletom.Instance.NowScene();
