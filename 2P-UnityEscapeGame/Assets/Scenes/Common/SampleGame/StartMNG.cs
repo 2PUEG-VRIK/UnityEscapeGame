@@ -31,6 +31,24 @@ public class StartMNG : MonoBehaviour
         SceneManager.LoadScene("Stage01");
     }
 
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit() ;
+            // 어플리케이션 종료
+#endif
+    }
+
+
+    public void Story_Start()
+    {
+         
+        SceneManager.LoadScene("Stage10");
+    }
+
     private void createFolder(string playername)
     {
         // 사용자 이름으로 폴더 생성하고 sum 0.0으로 초기화

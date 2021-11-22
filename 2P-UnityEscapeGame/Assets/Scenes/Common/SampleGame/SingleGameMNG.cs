@@ -79,6 +79,7 @@ public class SingleGameMNG : MonoBehaviour
         }
         else if (activeScene == now_scene)
         {
+             
             mode = GameObject.Find("Mode").GetComponent<Text>();
             mode.text = "\nStage " + activeScene.Substring(activeScene.Length - 2, 2);
 
@@ -90,6 +91,8 @@ public class SingleGameMNG : MonoBehaviour
             Debug.Log("Scene Change!!");
             now_scene = activeScene;
 
+            Debug.Log(activeScene);
+
             if (activeScene == "Finish Scene")
             {
                 Debug.Log("Now is Finish Scene");
@@ -100,7 +103,7 @@ public class SingleGameMNG : MonoBehaviour
                 timeCount = 0; // 시간 0으로 돌리고
 
                 mode = GameObject.Find("Mode").GetComponent<Text>();
-                mode.text = "\nStage " + activeScene.Substring(activeScene.Length - 1, 1);
+                mode.text = "\nStage " + activeScene.Substring(activeScene.Length - 2, 2);
 
                 state = GameObject.Find("State").GetComponent<Text>();
 
@@ -142,6 +145,9 @@ public class SingleGameMNG : MonoBehaviour
     public void Retry()
     {
         StartCoroutine(LoadSceneCorutineByIndex(SceneManager.GetActiveScene().buildIndex));
+        timeCount = 0.0f;
+        isFinish = false;
+
     }
 
     public void Quit()
@@ -168,6 +174,12 @@ public class SingleGameMNG : MonoBehaviour
             Time.timeScale = 1;
             IsPause = false;
         }
+    }
+
+
+    public void Home()
+    {
+        SceneManager.LoadScene("A_Start Scene");
     }
 
     public void Timer()
