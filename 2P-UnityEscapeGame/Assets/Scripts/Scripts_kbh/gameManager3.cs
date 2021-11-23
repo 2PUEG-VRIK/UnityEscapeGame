@@ -310,7 +310,6 @@ public class gameManager3 : MonoBehaviour
             case -4://더쥐랑 얘기 끝내고~ 가로등에 박은 상태
                 StartCoroutine(CallOtherMap(-4));
                 break;
-
         }
 
         if (Rock.Final)
@@ -327,7 +326,6 @@ public class gameManager3 : MonoBehaviour
         {
             touchThings = other.gameObject;
             isTouch = true;
-
             switch (other.name)
             {
                 case "car_pivot":
@@ -337,11 +335,7 @@ public class gameManager3 : MonoBehaviour
                 case "Car":
                     break;
             }
-
-            //    preThing = other.transform.position;
-
             Debug.Log(other.name);
-
             talkPanel.SetActive(false);
         }
 
@@ -349,7 +343,7 @@ public class gameManager3 : MonoBehaviour
         {
             if (value == 4)//오리랑 대화
             {
-                if (check == 3 || check == -3 | check == 5)
+                if ( check == -3 )
                 {
                     touchThings = other.gameObject;
                     talkPanel.SetActive(false);
@@ -396,13 +390,11 @@ public class gameManager3 : MonoBehaviour
             isTouch = true;
 
             check = 3;
-            if (!third)//문 닿고 아직 두번째 여행 안갔을 때 첫번째 여행에서의 정보들 삭제함
+            if (!third)//돌에 닿으면  첫번째 여행에서의 정보들 삭제함(맵 간 이동 한 번만 했을 경우)
                 for (int i = 0; i < judgeSc.arr1.Count; i++)
                     judgeSc.arr1.Remove(i);
-            if (followDuck && check == 3)
-            {
+            if (followDuck)
                 check = -5;
-            }
         }
 
         else if (other.name == "lightHidden" && check == 4)//두더지랑 대화 끝나고 가로등에 갖다 박아
@@ -496,7 +488,7 @@ public class gameManager3 : MonoBehaviour
         {
             "혹시 날개재주 좋은 오리 있니?", "아, 네가 밖으로 나가는 문을 고칠 수 있는 오리야?","와~ 정말? 잘됐다~ 그럼 혹시 " +
             "지금 고쳐줄 수 있을까?\n집에 돌아가고싶은데 저 문이 고장났대..","망치? 나한텐 없는데...","나 너무 지쳤는데 미안하지만" +
-            "같이 가서 도와줄 순 없을까?","그렇구나.. 좋아! 힘내서 얼른 다녀올게! 알려줘서 고마워 오리야!","망치갖고왔는데~","와! 얼른 가자!"
+            "같이 가줄 순 없을까?","그렇구나.. 좋아! 힘내서 얼른 다녀올게! 알려줘서 고마워 오리야!","망치갖고왔는데~","와! 얼른 가자!"
         });
     }
 
@@ -529,9 +521,10 @@ public class gameManager3 : MonoBehaviour
         myLastIndex = textGroup[value].Length;
     }
 
+    Vector3 mypos;
     private void popMyText(int value)
     { // npc랑 하는 내 대화 띄우기
-
+        mypos = this.transform.position;
         if (value == 0)
         { //혼자 뛰어다니는 상황 설명
           // if (myLastIndex <= myIndex) //대화의 끝에 도달하면 
@@ -579,7 +572,7 @@ public class gameManager3 : MonoBehaviour
                 }
                 // if (Input.GetKeyDown(KeyCode.X))
                 {
-                    if (value == 3 && myIndex == 3 && !twice)//꽃이랑 말할때
+                    if (value == 3 && myIndex == 3 && !twice)//꽃이랑 말할때~~~~ 아파트로 가게끔 유도하는 1차 대화 끝난 것. 여기 수정해야됨 X눌러도 더 안생기게
                     {
                         talkPanel.SetActive(false);
                         panelActive = false;
@@ -744,7 +737,7 @@ public class gameManager3 : MonoBehaviour
     IEnumerator FlowerSay()
     {
         isTimerOn = true; value = 1;
-        if (2.5f < time && time < 5f)
+        if (2.5f < time && time < 4f)
         {
 
             talkPanel.SetActive(true);
@@ -756,26 +749,26 @@ public class gameManager3 : MonoBehaviour
         }
 
         value = 7;
-        if (5.5f < time && time < 8f)
+        if (4.5f < time && time < 7f)
         {
             nameText.text = GetName(3, 1);
             changeNameIcon(7);
 
             talkText.text = "야~ 너! 이리와 봐~";
         }
-        else if (8f < time && time < 11f)
+        else if (7f < time && time < 9f)
         {
             talkText.text = "어? 날 부르는건가?";
             nameText.text = GetName(0, 0);
             changeNameIcon(0);
         }
-        else if (11f < time && time < 14f)
+        else if (9f < time && time < 13f)
         {
             talkText.text = "그래 너 ~ \n건물 옆 쓰레기통으로 얼른 와 봐!";
             nameText.text = GetName(3, 1);
             changeNameIcon(7);
         }
-        else if (time > 14f)
+        else if (time > 13f)
         {
             check = -1;
 
@@ -788,7 +781,6 @@ public class gameManager3 : MonoBehaviour
             yield return null;
         }
     }
-    //mole=-11.87
 
     IEnumerator HouseTalk()//아파트에서 혼잣말하는거
     {
