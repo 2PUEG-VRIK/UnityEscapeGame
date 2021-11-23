@@ -177,20 +177,20 @@ public class gameManager3 : MonoBehaviour
             GameObject.Find("car_pivot").GetComponent<BoxCollider>().enabled = false;//차랑 두더지 콜라이더 없애
             lightHidden.SetActive(false);
             mole.GetComponent<BoxCollider>().enabled = false;
-            this.transform.position = new Vector3(150, 6, 5);
+            //this.transform.position = new Vector3(150, 6, 5);
             first = false;
             twice = true; third = true;
             isTimerOn = false;
             time = 0.0f;
             myIndex = 6;
             yourIndex = 5;
-            check = 5;
+            check = 5; value = 0;
             arrow_blackCar.SetActive(false);
             GameObject.Find("WeaponPoint").transform.GetChild(0).gameObject.SetActive(true);
             man.hasWeapons[0] = true;
             man.sDown1 = true;
             man.Swap();
-            GameObject.FindWithTag("Player").transform.position = new Vector3(150, 6, 32);
+            //GameObject.FindWithTag("Player").transform.position = new Vector3(150, 6, 32);
             Debug.Log(check);
             Debug.Log(this.transform.position);
             talkPanel.SetActive(true);
@@ -946,7 +946,6 @@ public class gameManager3 : MonoBehaviour
             talkPanel.SetActive(false);
             panelActive = false;
             talkText.text = "";
-            time = 0.0f;
 
             yield return null;
         }
