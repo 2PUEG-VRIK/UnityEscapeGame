@@ -45,11 +45,11 @@ public class cubeMapManagerScript : MonoBehaviour
         grabCube = GameObject.Find("holdingCube").transform.GetChild(0).gameObject;
         //exit = GameObject.Find("2nd").transform.GetChild(5).gameObject;
         hammerGrab = GameObject.Find("WeaponPoint").transform.GetChild(0).gameObject;
-        judge = GameObject.Find("judging").GetComponent<judginScript>();
-        howTo = GameObject.Find("bbo").transform.GetChild(0).gameObject;
-        time = 0.0f;
-        cubeNum = 18;
-        isTimerOn = true;
+        //judge = GameObject.Find("judging").GetComponent<judginScript>();
+        //howTo = GameObject.Find("bbo").transform.GetChild(0).gameObject;
+        //time = 0.0f;
+        //cubeNum = 18;
+        //isTimerOn = true;
 
     }
     private void Awake()
@@ -63,21 +63,20 @@ public class cubeMapManagerScript : MonoBehaviour
         if (isHold && check == 1)
             StartCoroutine("goBack");
 
-        if (cubeNum == 0)
+        if (goApartment)
         {
             GameObject.Find("Weapon Hammer").GetComponent<SphereCollider>().isTrigger = true;
             judge.yes_2 = true;
             judge.yes = true;
 
-            if (goApartment)
-                StartCoroutine(goApartmentCo());
+           StartCoroutine(goApartmentCo());
 
         }
-        if (isTimerOn)
-        {
-            time += Time.deltaTime;
-            StartCoroutine(popHowTo());
-        }
+        //if (isTimerOn)
+        //{
+        //    time += Time.deltaTime;
+        //    StartCoroutine(popHowTo());
+        //}
     }
 
     private void OnCollisionEnter(Collision other)
@@ -126,27 +125,9 @@ public class cubeMapManagerScript : MonoBehaviour
 
                 }
             }
-
         }
 
-        //if(other.transform.tag=="Water")
-        //{
-        //    if (!isHold)//들고있지않은 상태에서 애를 만났따!
-        //    {
-        //        if (cube.name == "_Cube")
-        //            Instantiate(hammer_prefab, other.transform.position, Quaternion.identity);
-        //        audioSource.clip = audioCubeTouch;
-        //        audioSource.Play();
-        //        grabCube.transform.gameObject.SetActive(true);//들고있게 하고
-        //        grabCube.GetComponent<Renderer>().material.color = cube.GetComponent<Renderer>().material.color;
-        //        cube.gameObject.SetActive(false);//닿은 애 없애고
-        //        cubeValue = cube.value;//변수에 밸류값 넣어
-        //        isHold = true;
-
-        //    }
-        //}
-
-        if (other.transform.tag == "Item" && cubeNum==0)
+        if (other.transform.tag == "Item")
         {
             hammerGrab.SetActive(true);
             goApartment = true;
@@ -185,21 +166,20 @@ public class cubeMapManagerScript : MonoBehaviour
 
     IEnumerator goApartmentCo()
     {
-
         AsyncOperation async = SceneManager.LoadSceneAsync("Stage10");
         while (!async.isDone)
             yield return null;
     }
 
-    IEnumerator popHowTo()
-    {
-        if (10f < time && time < 15f)
-            howTo.SetActive(true);
-        else if (time > 14f)
-        {
-            howTo.SetActive(false);
-            isTimerOn = false;
-        }
-        yield return null;
-    }
+    //IEnumerator popHowTo()
+    //{
+    //    if (10f < time && time < 15f)
+    //        howTo.SetActive(true);
+    //    else if (time > 14f)
+    //    {
+    //        howTo.SetActive(false);
+    //        isTimerOn = false;
+    //    }
+    //    yield return null;
+    //}
 }
