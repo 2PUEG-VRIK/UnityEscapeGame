@@ -108,7 +108,6 @@ public class gameManager3 : MonoBehaviour
     AudioSource audioSource;
     private int final;
     GameObject howTo;
-    GameObject firstArrow;
     private void Start()
     {
         dontMove = false;
@@ -128,7 +127,6 @@ public class gameManager3 : MonoBehaviour
         judge = GameObject.Find("judging");
         judgeSc = judge.GetComponent<judginScript>();
         lightHidden = GameObject.Find("lightHidden");
-        //firstArrow = GameObject.Find("arrow 3");
         //saveM = GameObject.Find("saveManager");
         //data = saveM.GetComponent<saveManagerScript>();
         isTimerOn = true;
@@ -164,7 +162,6 @@ public class gameManager3 : MonoBehaviour
             nameText.text = GetName(0, 0);
             changeNameIcon(0);
             howTo.SetActive(false);
-            //firstArrow.SetActive(false);
             isTimerOn = false;
             time = 0.0f;
 
@@ -202,7 +199,6 @@ public class gameManager3 : MonoBehaviour
             nameText.text = GetName(0, 0);
             changeNameIcon(0);
             talkText.text = "휴~ 이제 오리한테 망치를 갖다줘야지!";
-            //firstArrow.SetActive(false);
 
             howTo.SetActive(false);
 
@@ -632,7 +628,6 @@ public class gameManager3 : MonoBehaviour
                     check = 1;
                     GameObject.Find("arrow3").transform.position=new Vector3(-18, 36, -213);
                     GameObject.Find("arrow3").transform.rotation = Quaternion.Euler(0, 0, -90);
-                    firstArrow.SetActive(false);
 
                 }
                 else if (value == 2)//두더지랑 대화 끝났고 que에 저장하면서 check=-4될 예정. 이 코드 맞는코드임

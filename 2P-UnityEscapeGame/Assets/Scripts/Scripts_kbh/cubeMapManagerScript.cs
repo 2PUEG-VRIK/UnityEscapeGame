@@ -45,7 +45,7 @@ public class cubeMapManagerScript : MonoBehaviour
         grabCube = GameObject.Find("holdingCube").transform.GetChild(0).gameObject;
         //exit = GameObject.Find("2nd").transform.GetChild(5).gameObject;
         hammerGrab = GameObject.Find("WeaponPoint").transform.GetChild(0).gameObject;
-        //judge = GameObject.Find("judging").GetComponent<judginScript>();
+        judge = GameObject.Find("judging").GetComponent<judginScript>();
         //howTo = GameObject.Find("bbo").transform.GetChild(0).gameObject;
         //time = 0.0f;
         //cubeNum = 18;
