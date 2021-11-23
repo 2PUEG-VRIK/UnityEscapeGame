@@ -529,7 +529,7 @@ public class gameManager3 : MonoBehaviour
                 man.speed=0;
                 if (myLastIndex <= myIndex)
                 {
-                    man.speed = 50;//움직일 수 있다 이제~
+                    man.speed = 35;//움직일 수 있다 이제~
 
                     talkPanel.SetActive(false);
                     panelActive = false;
@@ -564,7 +564,7 @@ public class gameManager3 : MonoBehaviour
 
                 if (myLastIndex <= myIndex)
                 {
-                    man.speed = 50;
+                    man.speed = 35;
 
                     talkPanel.SetActive(false);
                     panelActive = false;
@@ -582,7 +582,7 @@ public class gameManager3 : MonoBehaviour
                    
                     if (value == 3 && myIndex == 3 &&!twice )//꽃이랑 말할때~~~~ 아파트로 가게끔 유도하는 1차 대화 끝난 것. 여기 수정해야됨 X눌러도 더 안생기게
                     {
-                        man.speed = 50;
+                        man.speed = 35;
                         talkPanel.SetActive(false);
                             panelActive = false;
                             Debug.Log("대화 끝났다는");
@@ -615,7 +615,7 @@ public class gameManager3 : MonoBehaviour
         {
             if (yourLastIndex <= yourIndex)
             {
-                man.speed = 50;
+                man.speed = 35;
 
                 talkPanel.SetActive(false);
                 panelActive = false;
@@ -642,7 +642,7 @@ public class gameManager3 : MonoBehaviour
             // if (Input.GetKeyDown(KeyCode.X))
             else if (value == 4 && yourIndex == 5 && !third)//오리와의 1차 대화 끝나는 조건
             {
-                man.speed = 50;
+                man.speed = 35;
                 talkPanel.SetActive(false);
                 panelActive = false;
                 GameObject.Find("npcArrow").transform.GetChild(1).gameObject.SetActive(true);//택시의 화살표 activate~
@@ -960,7 +960,7 @@ public class gameManager3 : MonoBehaviour
         else if(time>1000f)
         {
             isTimerOn = false;
-            man.speed = 50;
+            man.speed = 35;
         }
         yield return null;
     }
