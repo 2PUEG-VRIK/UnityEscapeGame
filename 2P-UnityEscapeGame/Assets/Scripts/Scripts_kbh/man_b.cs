@@ -158,7 +158,7 @@ public class man_b : MonoBehaviour
     void Move()
     {
 
-        if (isBump || isSwap || isDead ||manager.dontMove) //움직일 수 없다
+        if (isBump || isSwap || isDead) //움직일 수 없다
         {
             return;
         }

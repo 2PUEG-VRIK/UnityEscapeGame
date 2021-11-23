@@ -62,7 +62,7 @@ public class gameManager3 : MonoBehaviour
     private bool isCarRotateBack;
     Dictionary<int, string[]> textGroup;//내 대화 뭉텅이
     Dictionary<int, string[]> nameTextGroup;//말하는 사람들 이름 뭉텅이
-    public bool dontMove;//대화중에는 움직이지 말기
+    //public bool dontMove;//대화중에는 움직이지 말기
 
 
     GameObject car;
@@ -110,7 +110,6 @@ public class gameManager3 : MonoBehaviour
     GameObject howTo;
     private void Start()
     {
-        dontMove = false;
         yourIndex = 0; myIndex = 0;
         value = 0; myLastIndex = -1;
         first = true;//내가 먼저 말 시작하면서 게임 시작해야하니까
@@ -176,7 +175,6 @@ public class gameManager3 : MonoBehaviour
             GameObject.Find("specialPlane").SetActive(false);//아파트 앞 발파 ㄴ없애고ㅛ
             GameObject.Find("flowerArrow").SetActive(false);//꽃 위에 있는 화살표 없애고
             GameObject.Find("car_pivot").GetComponent<BoxCollider>().enabled = false;//차랑 두더지 콜라이더 없애
-            GameObject.Find("blackCarArrow").SetActive(false);
             lightHidden.SetActive(false);
             mole.GetComponent<BoxCollider>().enabled = false;
             this.transform.position = new Vector3(150, 6, 5);
@@ -484,7 +482,7 @@ public class gameManager3 : MonoBehaviour
         //4 오리
         textGroup.Add(4, new string[]
         {
-            "혹시 날개재주 좋은 오리 있니?", "아, 네가 밖으로 나가는 길 관리하는 오리야?","와~ 정말? 잘됐다~ 그럼 혹시 " +
+            "혹시 날개재주 좋은 오리 있니?", "아, 네가 밖으로 나가는 길을 관리하는 오리야?","와~ 정말? 잘됐다~ 그럼 혹시 " +
             "지금 저 길에 있는 돌들 좀 치워줄 수 있어?\n집에 돌아가고싶은데 막혀있어..","망치? 나한텐 없는데...","미안하지만" +
             "같이 가줄 순 없을까?","그렇구나.. 좋아! 힘내서 얼른 다녀올게! 알려줘서 고마워 오리야!","망치갖고왔는데~","와! 얼른 가자!"
         });
@@ -528,10 +526,10 @@ public class gameManager3 : MonoBehaviour
           // if (myLastIndex <= myIndex) //대화의 끝에 도달하면 
             while (true)
             {
-                dontMove = true;
+                man.speed=0;
                 if (myLastIndex <= myIndex)
                 {
-                    dontMove = false;//움직일 수 있다 이제~
+                    man.speed = 50;//움직일 수 있다 이제~
 
                     talkPanel.SetActive(false);
                     panelActive = false;
@@ -559,14 +557,15 @@ public class gameManager3 : MonoBehaviour
         }
         else
         { //npc랑 대화할 때 내 말들
-                dontMove = true;
+            man.speed = 0;
             while (true)
             {
                 if (value == 2) check = 2;
 
                 if (myLastIndex <= myIndex)
                 {
-                    dontMove = false;
+                    man.speed = 50;
+
                     talkPanel.SetActive(false);
                     panelActive = false;
 
@@ -583,8 +582,8 @@ public class gameManager3 : MonoBehaviour
                    
                     if (value == 3 && myIndex == 3 &&!twice )//꽃이랑 말할때~~~~ 아파트로 가게끔 유도하는 1차 대화 끝난 것. 여기 수정해야됨 X눌러도 더 안생기게
                     {
-                            dontMove = false;
-                            talkPanel.SetActive(false);
+                        man.speed = 50;
+                        talkPanel.SetActive(false);
                             panelActive = false;
                             Debug.Log("대화 끝났다는");
                     }
@@ -611,12 +610,12 @@ public class gameManager3 : MonoBehaviour
     private void popNPCText(int value)
     {
         yourLastIndex = talkManager.CheckLength(value);
-        dontMove = true;
+        man.speed = 0;
         while (true)
         {
             if (yourLastIndex <= yourIndex)
             {
-                dontMove = false;
+                man.speed = 50;
 
                 talkPanel.SetActive(false);
                 panelActive = false;
@@ -643,12 +642,11 @@ public class gameManager3 : MonoBehaviour
             // if (Input.GetKeyDown(KeyCode.X))
             else if (value == 4 && yourIndex == 5 && !third)//오리와의 1차 대화 끝나는 조건
             {
-                dontMove = false;
+                man.speed = 50;
                 talkPanel.SetActive(false);
                 panelActive = false;
                 GameObject.Find("npcArrow").transform.GetChild(1).gameObject.SetActive(true);//택시의 화살표 activate~
             }
-
             
             talkText.text = talkManager.GetTalk(value, yourIndex);//npc index 대화 출력
             yourIndex++;
@@ -660,8 +658,6 @@ public class gameManager3 : MonoBehaviour
             audioSource.Play();
             if (value == 3 && twice)//몬스터 때려잡고 꽃한테 따질 때 꽃 이름 바꿔야해
                 nameText.text = GetName(value, 2);
-
-            // changeNameIcon(value);
             break;
         }
     }
@@ -768,7 +764,7 @@ public class gameManager3 : MonoBehaviour
             nameText.text = GetName(1, 0);
             changeNameIcon(1);
 
-            talkText.text = "잠깐! 꼬마야! 두더지가 어디있는지 모르잖아!";
+            talkText.text = "(잠깐! 저 꼬마는 두더지가 어디있는지 모르잖아!)";
         }
 
         value = 7;
@@ -824,7 +820,6 @@ public class gameManager3 : MonoBehaviour
             check = -2;
             yield return null;
         }
-        //}
     }
 
     public bool saveData = false;
@@ -854,7 +849,7 @@ public class gameManager3 : MonoBehaviour
         value = 0;
         isTimerOn = true;
         GameObject.Find("npcArrow").transform.GetChild(4).gameObject.SetActive(true);//오리 머리 위에 화살표 띄우기
-        if (2f < time && time < 4f)
+        if (1f < time && time < 4f)
         {
             talkPanel.SetActive(true);
             panelActive = true;
@@ -958,7 +953,7 @@ public class gameManager3 : MonoBehaviour
     }
     IEnumerator popHowTo()
     {
-        dontMove = true;
+        man.speed = 0;
         if (2f < time && time < 7f)
             howTo.SetActive(true);
         else if (time > 7f)
@@ -966,7 +961,7 @@ public class gameManager3 : MonoBehaviour
         else if(time>1000f)
         {
             isTimerOn = false;
-            dontMove = false;
+            man.speed = 50;
         }
         yield return null;
     }
