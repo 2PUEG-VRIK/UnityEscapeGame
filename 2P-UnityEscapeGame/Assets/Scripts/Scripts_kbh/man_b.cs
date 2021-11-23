@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class man_b : MonoBehaviour
 {
@@ -68,6 +67,7 @@ public class man_b : MonoBehaviour
     Vector3 playerPos;
     IEnumerator enu1; //ladder에 필요
     Vector3 prePos;//뒤로 점프하기 전 플레이어의 기존 위치
+    gameManager3 manager;
 
     public AudioClip audioGunShot;
     public AudioClip audioJump;
@@ -86,6 +86,7 @@ public class man_b : MonoBehaviour
         isBox = false;
         istoWALL = false;
         istoDoor = false;
+        manager = this.GetComponent<gameManager3>();
     }
 
     void Awake()
@@ -157,7 +158,7 @@ public class man_b : MonoBehaviour
     void Move()
     {
 
-        if (isBump || isSwap || isDead)
+        if (isBump || isSwap || isDead ||manager.dontMove) //움직일 수 없다
         {
             return;
         }
@@ -388,10 +389,8 @@ public class man_b : MonoBehaviour
 
         else if (other.tag == "Enemy")
         {
-            //prePos = this.transform.position;ㅁㅁaaaaaaAAAAAA
             health--;
             Bump();
-            //Debug.Log("닿았따----------------------------");
             if (health <= 0)
                 Quit();
         }

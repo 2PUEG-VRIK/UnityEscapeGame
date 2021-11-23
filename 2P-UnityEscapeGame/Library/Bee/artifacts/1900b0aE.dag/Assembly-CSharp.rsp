@@ -401,6 +401,7 @@
 "Assets/Scripts/Scripts_kbh/gameManager3.cs"
 "Assets/Scripts/Scripts_kbh/GawiBawi.cs"
 "Assets/Scripts/Scripts_kbh/hitDoor.cs"
+"Assets/Scripts/Scripts_kbh/man_b.cs"
 "Assets/Scripts/Scripts_kbh/mngWhole1_2.cs"
 "Assets/Scripts/Scripts_kbh/mngWhole1_3.cs"
 "Assets/Scripts/Scripts_kbh/monsterMapScript.cs"

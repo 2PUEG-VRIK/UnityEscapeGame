@@ -62,6 +62,7 @@ public class gameManager3 : MonoBehaviour
     private bool isCarRotateBack;
     Dictionary<int, string[]> textGroup;//내 대화 뭉텅이
     Dictionary<int, string[]> nameTextGroup;//말하는 사람들 이름 뭉텅이
+    public bool dontMove;//대화중에는 움직이지 말기
 
 
     GameObject car;
@@ -110,6 +111,7 @@ public class gameManager3 : MonoBehaviour
     GameObject firstArrow;
     private void Start()
     {
+        dontMove = false;
         yourIndex = 0; myIndex = 0;
         value = 0; myLastIndex = -1;
         first = true;//내가 먼저 말 시작하면서 게임 시작해야하니까
@@ -470,7 +472,7 @@ public class gameManager3 : MonoBehaviour
         textGroup.Add(0, new string[] { "(헉.. 헉..) 여긴 어디지? \n처음 오는 곳인데...", "딴 생각하며 산책하다 너무 멀리 와버렸어..." });//mylast=2
         //1 양이랑 하는 대화
         textGroup.Add(1, new string[]//mylast=3
-        { "저기.. ", "길을 잃었어... 여긴 대체 어디야?\n집에 가고싶어...","와 진짜? ... 고마워! 지금 바로 두더지 찾으러가야지!"});
+        { "저기.. ", "길을 잃었어... 여긴 대체 어디야?\n집에 가고싶어...","정말?  고마워! 지금 바로 두더지를 찾으러 가야겠다!"});
         //2 두더지랑 대화
         textGroup.Add(2, new string[]
         {
@@ -479,7 +481,7 @@ public class gameManager3 : MonoBehaviour
         //3 아파트 옆 못난이 꽃
         textGroup.Add(3, new string[]
         {
-            "네가 날 불렀니?", "아..길을 잃었거든\n그래서 나가는 법을 두더지에게 물어보려고", "와, 정말이니? 고마워!!!", "너무한거 아니야? 죽을 뻔 했잖아!",
+            "네가 날 불렀니?", "아..길을 잃었거든 ㅠㅠ\n그래서 나가는 법을 두더지에게 물어보려고!", "와, 정말이니? 고마워!!!", "너무한거 아니야? 죽을 뻔 했잖아!",
             "..정말이지?","괜찮아. 알려줘서 고마워! 안녕!"
         });
 
@@ -530,13 +532,14 @@ public class gameManager3 : MonoBehaviour
           // if (myLastIndex <= myIndex) //대화의 끝에 도달하면 
             while (true)
             {
+                dontMove = true;
                 if (myLastIndex <= myIndex)
                 {
                     talkPanel.SetActive(false);
                     panelActive = false;
                     yourIndex = 0; myIndex = 0;
                     first = false;
-
+                    dontMove = false;//움직일 수 있다 이제~
                     break;
                 }
                 {
@@ -554,12 +557,14 @@ public class gameManager3 : MonoBehaviour
         }
         else
         { //npc랑 대화할 때 내 말들
+                dontMove = true;
             while (true)
             {
                 if (value == 2) check = 2;
 
                 if (myLastIndex <= myIndex)
                 {
+                    dontMove = false;
                     talkPanel.SetActive(false);
                     panelActive = false;
 
@@ -568,12 +573,15 @@ public class gameManager3 : MonoBehaviour
 
                     if (value == 2)//두더지랑 대화 끝났고 que에 저장하면서 check=-4될 예정. 이 코드 맞는코드임
                         check = 4;
+
                     break;
                 }
                 // if (Input.GetKeyDown(KeyCode.X))
                 {
                     if (value == 3 && myIndex == 3 && !twice)//꽃이랑 말할때~~~~ 아파트로 가게끔 유도하는 1차 대화 끝난 것. 여기 수정해야됨 X눌러도 더 안생기게
                     {
+                        dontMove =false;
+
                         talkPanel.SetActive(false);
                         panelActive = false;
                         Debug.Log("대화 끝났다는");
@@ -601,10 +609,13 @@ public class gameManager3 : MonoBehaviour
     private void popNPCText(int value)
     {
         yourLastIndex = talkManager.CheckLength(value);
+        dontMove = true;
         while (true)
         {
             if (yourLastIndex <= yourIndex)
             {
+                dontMove = false;
+
                 talkPanel.SetActive(false);
                 panelActive = false;
                 Debug.Log("대화 긑나서 창 종료");
@@ -613,6 +624,8 @@ public class gameManager3 : MonoBehaviour
                 if (value == 1)//양이랑 대화가 끝나면
                 {
                     check = 1;
+                    GameObject.Find("arrow3").transform.position=new Vector3(-18, 36, -213);
+                    GameObject.Find("arrow3").transform.rotation = Quaternion.Euler(0, 0, -90);
                     firstArrow.SetActive(false);
 
                 }
@@ -627,12 +640,14 @@ public class gameManager3 : MonoBehaviour
                 break;
             }
             // if (Input.GetKeyDown(KeyCode.X))
-            else if (value == 4 && yourIndex == 5 && !third)//오리랑 말할 때
+            else if (value == 4 && yourIndex == 5 && !third)//오리와의 1차 대화
             {
+                dontMove = false;
                 talkPanel.SetActive(false);
                 panelActive = false;
                 Debug.Log("대화 끝났다는sk");
             }
+
             talkText.text = talkManager.GetTalk(value, yourIndex);//npc index 대화 출력
             yourIndex++;
             isMyTurn = true;
@@ -736,8 +751,10 @@ public class gameManager3 : MonoBehaviour
 
     IEnumerator FlowerSay()
     {
+        GameObject.Find("arrow3").transform.position = new Vector3(this.transform.position.x, this.transform.position.y +18, this.transform.position.z);
+        GameObject.Find("arrow3").transform.rotation = Quaternion.Euler(0, 0, -90);
         isTimerOn = true; value = 1;
-        if (2.5f < time && time < 4f)
+        if (4f < time && time < 6f)
         {
 
             talkPanel.SetActive(true);
@@ -749,26 +766,26 @@ public class gameManager3 : MonoBehaviour
         }
 
         value = 7;
-        if (4.5f < time && time < 7f)
+        if (6f < time && time < 9f)
         {
             nameText.text = GetName(3, 1);
             changeNameIcon(7);
 
             talkText.text = "야~ 너! 이리와 봐~";
         }
-        else if (7f < time && time < 9f)
+        else if (9f < time && time < 11f)
         {
             talkText.text = "어? 날 부르는건가?";
             nameText.text = GetName(0, 0);
             changeNameIcon(0);
         }
-        else if (9f < time && time < 13f)
+        else if (11f < time && time < 14f)
         {
             talkText.text = "그래 너 ~ \n건물 옆 쓰레기통으로 얼른 와 봐!";
             nameText.text = GetName(3, 1);
             changeNameIcon(7);
         }
-        else if (time > 13f)
+        else if (time > 14f)
         {
             check = -1;
 
@@ -777,7 +794,7 @@ public class gameManager3 : MonoBehaviour
             talkText.text = "";
             time = 0.0f;
             isTimerOn = false;
-
+            GameObject.Find("arrow3").SetActive(false);
             yield return null;
         }
     }
@@ -934,6 +951,7 @@ public class gameManager3 : MonoBehaviour
     }
     IEnumerator popHowTo()
     {
+        dontMove = true;
         if (2f < time && time < 8f)
             howTo.SetActive(true);
         else if (time > 8f)
