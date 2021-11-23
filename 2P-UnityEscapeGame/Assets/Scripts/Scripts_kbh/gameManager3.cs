@@ -128,7 +128,7 @@ public class gameManager3 : MonoBehaviour
         judge = GameObject.Find("judging");
         judgeSc = judge.GetComponent<judginScript>();
         lightHidden = GameObject.Find("lightHidden");
-        firstArrow = GameObject.Find("arrow 3");
+        //firstArrow = GameObject.Find("arrow 3");
         //saveM = GameObject.Find("saveManager");
         //data = saveM.GetComponent<saveManagerScript>();
         isTimerOn = true;
@@ -182,7 +182,7 @@ public class gameManager3 : MonoBehaviour
             GameObject.Find("blackCarArrow").SetActive(false);
             lightHidden.SetActive(false);
             mole.GetComponent<BoxCollider>().enabled = false;
-            //this.transform.localPosition = new Vector3(150, 6, 32);
+            this.transform.position = new Vector3(150, 6, 5);
             first = false;
             twice = true; third = true;
             isTimerOn = false;
