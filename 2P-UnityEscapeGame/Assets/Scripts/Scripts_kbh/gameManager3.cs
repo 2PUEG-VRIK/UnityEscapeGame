@@ -535,10 +535,11 @@ public class gameManager3 : MonoBehaviour
                 dontMove = true;
                 if (myLastIndex <= myIndex)
                 {
+                    dontMove = false;//움직일 수 있다 이제~
+
                     talkPanel.SetActive(false);
                     panelActive = false;
                     yourIndex = 0; myIndex = 0;
-                    dontMove = false;//움직일 수 있다 이제~
                     first = false;
                     if (isTimerOn) 
                     { 
@@ -966,8 +967,9 @@ public class gameManager3 : MonoBehaviour
         if (2f < time && time < 7f)
             howTo.SetActive(true);
         else if (time > 7f)
-        {
             howTo.SetActive(false);
+        else if(time>1000f)
+        {
             isTimerOn = false;
             dontMove = false;
         }

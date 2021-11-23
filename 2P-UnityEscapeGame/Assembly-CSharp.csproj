@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,12 +53,16 @@
     <UnityVersion>2021.1.9f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scenes\Common\SampleGame\StartMNG.cs" />
     <Compile Include="Assets\cubeMapManager.cs" />
     <Compile Include="Assets\Scripts\Scripts_com\Dragtarget.cs" />
     <Compile Include="Assets\Scripts\Scripts_com\box_sj.cs" />
     <Compile Include="Assets\Scenes\Common\SampleGame\Name.cs" />
     <Compile Include="Assets\extraScript.cs" />
+    <Compile Include="Assets\Scripts\Scripts_kbh\man_b.cs" />
     <Compile Include="Assets\Scripts\Scripts_com\Man.cs" />
     <Compile Include="Assets\Scripts\Scripts_com\Water.cs" />
     <Compile Include="Assets\Scripts\Scripts_com\SceneMover.cs" />
@@ -121,7 +125,6 @@
     <Compile Include="Assets\Scripts\Scripts_com\Teleport_wjj.cs" />
     <Compile Include="Assets\Scripts\Scripts_lsm\Activation.cs" />
     <Compile Include="Assets\Scripts\Scripts_com\Button.cs" />
-    <Compile Include="Assets\Scripts\Scripts_kbh\man_b.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\spritefont_and_other\document_and_picturelist\readme.txt" />
