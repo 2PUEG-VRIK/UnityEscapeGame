@@ -1020,7 +1020,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8842}
     - Class: 114
-      Script: {instanceID: 3973860}
+      Script: {instanceID: 59372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1083,6 +1083,8 @@ ScriptsOnlyBuild:
     - Class: 83
       Script: {instanceID: 0}
     - Class: 84
+      Script: {instanceID: 0}
+    - Class: 89
       Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
@@ -1331,8 +1333,6 @@ ScriptsOnlyBuild:
     - Class: 83
       Script: {instanceID: 0}
     - Class: 84
-      Script: {instanceID: 0}
-    - Class: 89
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -2971,4 +2971,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Final/Stage02.unity
   - Assets/Scenes/Final/Stage03.unity
   - Assets/Scenes/Final/Stage04.unity
-  playerPath: C:/Users/Administrator/Documents/GitHub/game/UnityEscapeGame.exe
+  playerPath: C:/Users/Administrator/Documents/GitHub/escape/UnityEscapeGame.exe
