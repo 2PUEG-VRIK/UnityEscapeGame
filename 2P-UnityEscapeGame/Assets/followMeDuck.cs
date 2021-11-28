@@ -20,8 +20,7 @@ public class followMeDuck : MonoBehaviour
     {
         if (manager.check == 5 && manager.followDuck)//오리랑 대화 다 끝났으면 ~ 날 따라와야해!
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
-            Debug.Log("따라갑니당");
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.transform.position.x, target.transform.position.y , target.transform.position.z-15) , Time.deltaTime * speed);
         }
     }
 }

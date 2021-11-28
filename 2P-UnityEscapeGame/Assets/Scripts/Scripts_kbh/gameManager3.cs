@@ -108,6 +108,7 @@ public class gameManager3 : MonoBehaviour
     AudioSource audioSource;
     private int final;
     GameObject howTo;
+    private bool done;
     private void Start()
     {
         yourIndex = 0; myIndex = 0;
@@ -134,6 +135,7 @@ public class gameManager3 : MonoBehaviour
         check = 0;
         time = 0f;
         final = 0;
+        done = false;
         //GameObject plane = GameObject.Find("specialPlane");
         //if (judge.GetComponent<judginScript>().yes)
         //    plane.SetActive(false);
@@ -308,7 +310,7 @@ public class gameManager3 : MonoBehaviour
                 break;
         }
 
-        if (Rock.Final)
+        if (Rock.Final && done == false)
         {
             if(final==0)
                 StartCoroutine(FinalAudio());
@@ -339,7 +341,7 @@ public class gameManager3 : MonoBehaviour
         {
             if (value == 4)//오리랑 대화
             {
-                if ( check == -3 )
+                if ( check == -3 ||check==5)
                 {
                     touchThings = other.gameObject;
                     talkPanel.SetActive(false);
@@ -353,8 +355,8 @@ public class gameManager3 : MonoBehaviour
                     Debug.Log("value   " + value);
                     checkLength();//대화길이 체크하고
                 }
-            }
 
+            }
             else
             {
                 touchThings = other.gameObject;
@@ -442,10 +444,10 @@ public class gameManager3 : MonoBehaviour
             {
                 Debug.Log("내 index" + myIndex);
                 Debug.Log("네 index" + yourIndex);
-                if (check == 5)
-                {
-
-                }
+                //if (check == 5)
+                //{
+                     
+                //}
             }
         }
         talkText.text = "";
@@ -946,6 +948,7 @@ public class gameManager3 : MonoBehaviour
             talkPanel.SetActive(false);
             panelActive = false;
             talkText.text = "";
+            done = true;
 
             yield return null;
         }
