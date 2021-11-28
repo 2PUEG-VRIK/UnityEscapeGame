@@ -78,6 +78,7 @@ public class Permanent : MonoBehaviour
     }
     IEnumerator popHowTo()
     {
+
         if (2f < time && time < 7f)
         {
             howTo.SetActive(true);
@@ -96,6 +97,8 @@ public class Permanent : MonoBehaviour
 
     IEnumerator popHowTo2()
     {
+        howTo = GameObject.Find("bbo").transform.GetChild(0).gameObject;
+
         if (2f < time && time < 7f)
         {
             howTo.SetActive(true);

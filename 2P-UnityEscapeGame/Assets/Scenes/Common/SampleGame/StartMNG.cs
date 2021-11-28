@@ -28,7 +28,7 @@ public class StartMNG : MonoBehaviour
         //notDestroy.GetComponent<SingleGameMNG>().playername = playerNM.text;
         //createFolder(playerNM.text);
 
-        SceneManager.LoadScene("Stage01");
+        SceneManager.LoadScene("Stage03");
     }
 
 

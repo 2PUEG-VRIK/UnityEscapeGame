@@ -15,7 +15,7 @@ public class cubeMapManager : MonoBehaviour
     Ray ray;
     RaycastHit hit;
     Renderer cubeColor;
-    int cubeNum = 10;//큐브 개수
+    int cubeNum = 6;//큐브 개수
     bool goDown;//느낌표 크기 관련 변수
     GameObject tele;
 
@@ -37,16 +37,8 @@ public class cubeMapManager : MonoBehaviour
     {
         if (isHold && check == 1)
             StartCoroutine("goBack");
-
         if (cubeNum == 0)
-        {
-            Debug.Log("큐부 0개남음!");
-
-
-        }
-
-        if (cubeNum == 2)
-            Debug.Log("두개남앗써용");
+            GameObject.Find("exitParent").transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

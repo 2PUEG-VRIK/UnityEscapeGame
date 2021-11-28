@@ -62,6 +62,7 @@ MonoBehaviour:
   DoorType: 0
   collectSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   isOpen: 0
+  msg: {fileID: 0}
 --- !u!1 &2341684698060311820
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +164,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2386038, guid: a45edd5bc91ee1c48a8ab43cb11194a0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 94f59aab1b299a24abac52d33e2cff72, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a45edd5bc91ee1c48a8ab43cb11194a0, type: 3}
 --- !u!4 &2341684697584933716 stripped
@@ -241,6 +246,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2343936, guid: ec320408768107441ac29a3a518d82ac, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 94f59aab1b299a24abac52d33e2cff72, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec320408768107441ac29a3a518d82ac, type: 3}
 --- !u!4 &2341684697867264048 stripped
